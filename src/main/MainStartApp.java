@@ -1,6 +1,9 @@
 package main;
 
+import java.io.IOException;
 
+
+import controller.MainViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,21 +20,29 @@ public class MainStartApp extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainView.fxml"));
-		
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/fxml/MainView.fxml"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		pane.getChildren().add(root);
 
 		Scene scene = new Scene(pane);
-		// scene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
+
 		stage.setTitle("Sudo Timer");
 		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setFullScreen(false);
 		stage.show();
 
 	}
-	
-	public static void main(String args[]){
-		launch(args);
-	}
 
+	public static void main(String args[]) {
+		launch(args);
+		System.exit(1);
+	}
 
 }
