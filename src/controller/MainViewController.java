@@ -113,13 +113,13 @@ public class MainViewController implements Initializable {
 		pomodoro.setDisable(true);
 		shortBreak.setDisable(true);
 		longBreak.setDisable(true);
+		volume.setDisable(true);
 
 		start.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
 
 			startAction();
 
 			start.setDisable(true);
-
 		});
 
 		// -----------------------------------------------------------------------
@@ -272,6 +272,7 @@ public class MainViewController implements Initializable {
 		pomodoro.setDisable(false);
 		shortBreak.setDisable(false);
 		longBreak.setDisable(false);
+		volume.setDisable(false);
 	}
 
 	public void stopAction() {

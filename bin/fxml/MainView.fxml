@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #009688;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #292a2b;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
    <top>
       <GridPane prefHeight="50.0" prefWidth="300.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -27,17 +27,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <JFXButton fx:id="pomodoro" buttonType="RAISED" opacity="0.83" prefHeight="30.0" style="-fx-background-color: #00796b;" text="Pomodoro" textFill="WHITE" GridPane.columnIndex="1">
+            <JFXButton fx:id="pomodoro" buttonType="RAISED" prefHeight="30.0" style="-fx-background-color: #1d1f20;" text="Pomodoro" textFill="WHITE" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton fx:id="shortBreak" buttonType="RAISED" opacity="0.83" prefHeight="30.0" style="-fx-background-color: #00796b;" text="Short Break" textFill="WHITE" GridPane.columnIndex="3">
+            <JFXButton fx:id="shortBreak" buttonType="RAISED" prefHeight="30.0" style="-fx-background-color: #1d1f20;" text="Short Break" textFill="WHITE" GridPane.columnIndex="3">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
             </JFXButton>
-            <JFXButton fx:id="longBreak" buttonType="RAISED" opacity="0.83" prefHeight="30.0" style="-fx-background-color: #00796b;" text="Long Break" textFill="WHITE" GridPane.columnIndex="5">
+            <JFXButton fx:id="longBreak" buttonType="RAISED" prefHeight="30.0" style="-fx-background-color: #1d1f20;" text="Long Break" textFill="WHITE" GridPane.columnIndex="5">
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin>
@@ -70,19 +70,19 @@
                         <Font size="48.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="50.0" prefWidth="330.0" spacing="10.0">
+                  <HBox prefHeight="50.0" prefWidth="330.0" spacing="20.0">
                      <children>
-                        <JFXButton fx:id="start" buttonType="RAISED" opacity="0.83" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #00796b;" text="Start" textFill="WHITE">
+                        <JFXButton fx:id="start" buttonType="RAISED" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #1d1f20;" text="Start" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="stop" buttonType="RAISED" opacity="0.83" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #00796b;" text="Stop" textFill="WHITE">
+                        <JFXButton fx:id="stop" buttonType="RAISED" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #1d1f20;" text="Stop" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="reset" buttonType="RAISED" opacity="0.83" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #00796b;" text="Reset" textFill="WHITE">
+                        <JFXButton fx:id="reset" buttonType="RAISED" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #1d1f20;" text="Reset" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
