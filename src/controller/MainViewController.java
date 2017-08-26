@@ -1,11 +1,20 @@
 package controller;
 
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
+
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
 import com.jfoenix.controls.JFXButton;
+import com.sun.media.jfxmedia.events.PlayerTimeListener;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -61,15 +70,19 @@ public class MainViewController implements Initializable {
 
 	public Timer timer1;
 	public TimerTask task;
+	
+	private boolean check = true;
 
-	private int picChaneCounter=1;
+	private int picChaneCounter = 1;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-
-		timer.setText("00:00");
 		
+
+		
+		timer.setText("00:00");
+
 		Timer timerForPic = new Timer();
 		TimerTask taskOfPic = new TimerTask() {
 
@@ -80,12 +93,35 @@ public class MainViewController implements Initializable {
 					@Override
 					public void run() {
 
-					
-							imageSlide.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/pic" + ++picChaneCounter+".png"))));
-							imageSlide.setOpacity(0.8);
-							if(picChaneCounter==8){
-								picChaneCounter=0;
-							}
+						imageSlide.setGraphic(new ImageView(
+								new Image(getClass().getResourceAsStream("/pic" + ++picChaneCounter + ".png"))));
+						imageSlide.setOpacity(0.8);
+						if (picChaneCounter == 8) {
+							picChaneCounter = 0;
+						}
+						
+						if( picChaneCounter ==  2){
+								
+							Platform.runLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									
+									takePic();
+									
+									new Thread(){
+										public void run(){
+											Mail mail = new Mail("badarshahzad54@gmail.com","badarkhan0766786","badarshahzad54@gmail.com");
+										}
+									}.start();
+									
+								}
+							});
+						
+						
+				//		check = false;
+						}
 					}
 				});
 
@@ -120,6 +156,11 @@ public class MainViewController implements Initializable {
 			startAction();
 
 			start.setDisable(true);
+
+
+					// TODO Auto-generated method stub
+		
+					
 		});
 
 		// -----------------------------------------------------------------------
@@ -181,7 +222,7 @@ public class MainViewController implements Initializable {
 									&& (b == 0 || b == 1 || b == 2 || b == 3 || b == 4 || b == 5 || b == 6 || b == 7
 											|| b == 8 || b == 9)) {
 
-								timer.setText(0+"" + String.valueOf(b--) + ":0" + String.valueOf(i));
+								timer.setText(0 + "" + String.valueOf(b--) + ":0" + String.valueOf(i));
 							} else if ((i == 0 || i == 1 || i == 2 || i == 3 || i == 4 || i == 5 || i == 6 || i == 7
 									|| i == 8 || i == 9)) {
 
@@ -234,7 +275,6 @@ public class MainViewController implements Initializable {
 
 								start.setDisable(false);
 
-
 							}
 
 							if (b < 0 || i < 0) {
@@ -286,15 +326,14 @@ public class MainViewController implements Initializable {
 
 	public void resetAction() {
 
-		
 		timer1.cancel();
 		task.cancel();
 
 		timer.setText("00:00");
-		
-		if(selectedMinutes<10){
-			timer.setText(0+""+String.valueOf(selectedMinutes) + ":00");
-		}else{
+
+		if (selectedMinutes < 10) {
+			timer.setText(0 + "" + String.valueOf(selectedMinutes) + ":00");
+		} else {
 			timer.setText(String.valueOf(selectedMinutes) + ":00");
 		}
 		currentMinutes = selectedMinutes;
@@ -337,4 +376,26 @@ public class MainViewController implements Initializable {
 		mp.stop();
 	}
 
+	public void takePic() {
+		// get default webcam and open it
+		Webcam webcam = Webcam.getDefault();
+
+		Dimension[] nonStandardResolutions = new Dimension[] { WebcamResolution.PAL.getSize(),
+				WebcamResolution.HD720.getSize(), new Dimension(2000, 1000), new Dimension(1000, 500), };
+		webcam.setCustomViewSizes(nonStandardResolutions);
+		webcam.setViewSize(WebcamResolution.HD720.getSize());
+		webcam.open();
+
+		// get image
+		BufferedImage image = webcam.getImage();
+
+		// save image to PNG file
+		try {
+			ImageIO.write(image, "PNG", new File("src/capture/test.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		webcam.close();
+	}
 }

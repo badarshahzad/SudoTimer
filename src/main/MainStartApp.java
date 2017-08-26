@@ -1,7 +1,7 @@
 package main;
 
 import java.io.IOException;
-
+import java.util.Properties;
 
 import controller.MainViewController;
 import javafx.application.Application;
@@ -27,6 +27,9 @@ public class MainStartApp extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+
+
 
 		pane.getChildren().add(root);
 
