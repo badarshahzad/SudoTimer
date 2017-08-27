@@ -4,7 +4,7 @@ An easy to use Pomodoro Technique Timer. This is desktop application.
 
 # Download
  
-You can download [Sudo Timer Jar](/jar/SudoTimerv2.jar).
+You can download [Sudo Timer Jar](https://github.com/badarshahzad/Sudo-Timer/raw/master/jar/SudoTimerv2.jar).
 
 
 ![Sudo Timer](/gif/SudoTimer.gif) 
