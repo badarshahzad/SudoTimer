@@ -1,15 +1,13 @@
 package main;
 
-import java.io.IOException;
-import java.util.Properties;
-
-import controller.MainViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainStartApp extends Application {
 
