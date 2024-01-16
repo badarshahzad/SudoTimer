@@ -1,37 +1,31 @@
 package controller;
-import java.io.File;
-import java.util.Properties;
+
+import dto.MailDto;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.io.File;
+import java.util.Properties;
 
-import javafx.scene.image.Image;
+public class MailController {
 
-public class Mail {
-	private  String username ;
-	private  String password ;
-	private String from ;
-	private String to ;
-	public Mail(String from,String password, String to){
-		this.from=from;
-		this.to = to;
-		this.username = from;
-		this.password = password;
-		sendMail();
+	MailDto mailDto;
+	public MailController(String from, String password, String to){
+		mailDto = new MailDto();
+		mailDto.setFrom(from);
+		mailDto.setTo(to);
+		mailDto.setUsername(from);
+		mailDto.setPassword(password);
+		sendMail(mailDto);
 	}
 
-	public void sendMail(){
+	public void sendMail(MailDto mailDto){
 		Properties props = new Properties();
 		
 		props.put("mail.smtp.auth", "true");
@@ -39,19 +33,18 @@ public class Mail {
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
 
-		Session session = Session.getInstance(props,
-				new javax.mail.Authenticator() {
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username,password);
+				return new PasswordAuthentication(mailDto.getUsername(),mailDto.getPassword());
 			}
 		});
 
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(from));
+			message.setFrom(new InternetAddress(mailDto.getFrom()));
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(to));
+					InternetAddress.parse(mailDto.getTo()));
 			message.setSubject("Website Status Notification.");
 	         MimeMultipart multipart = new MimeMultipart("related");
 
@@ -81,8 +74,7 @@ public class Mail {
 			System.out.println("Done");
 
 		} catch (MessagingException e) {
-			System.out.println("Error sending email.");
-			e.printStackTrace();
+			System.out.println("Error sending email: "+e.getMessage());
 		}
 	}
 //	public static void main(String[] args){
